@@ -4,6 +4,8 @@ const app = express();
 const server = require("http").Server(app);
 const io = require("socket.io")(server)
 
+const PORT = process.env.PORT || 9999;
+
 app.use(express.json());
 
 const rooms = new Map();
@@ -55,7 +57,7 @@ io.on("connection", socket => {
     console.log("socket connected", socket.id);
 });
 
-server.listen(9999, (err) => {
+server.listen(PORT, (err) => {
     if (err) {
         throw Error(err)
     }
